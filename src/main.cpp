@@ -3,6 +3,13 @@
 #include "commondef.h"
 #include "ConnMgr.h"
 
+#define TEMPLATE	"[INFO]\r\n"\
+					"USER=yourname\r\n"\
+					"PASSWORD=yourpassword\r\n"\
+					"PLAN=1/2/3/4\r\n"\
+					"MAC=00-00-00-00-00-00\r\n"\
+					"[注意:plan处填写套餐类型,对应官方客户端下拉菜单顺序的1,2,3,4]"
+
 bool g_ExitFlag = false;
 bool g_Action = STOP;
 bool g_Status = OFFLINE;
@@ -40,20 +47,26 @@ unsigned __stdcall mainLoop(void* pArguments)
 }
 DWORD DoSetting()
 {
-	STARTUPINFO si = {sizeof(si)};
-	PROCESS_INFORMATION pi;
-	memset(&pi, sizeof(pi), 0);
-	TCHAR cmdline[] = _T("c:\\windows\\system32\\notepad.exe ")_T(CONFIGFILE);
-	CreateProcess(NULL, cmdline, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
-/*	if(0)
+	TCHAR szPath[MAX_PATH];
+	if(SUCCEEDED(SHGetFolderPath(NULL,
+								CSIDL_APPDATA|CSIDL_FLAG_CREATE,
+								NULL,
+								0,
+								szPath)))
 	{
-		MessageBox(NULL, _T("OK"), _T("DONE"),MB_OK);
+		PathAppend(szPath, _T("xhcatv.ini"));
+		if(!PathFileExists(szPath)){
+			FILE *fp = _tfopen(szPath, _T("w"));
+			fwrite(TEMPLATE, sizeof(TEMPLATE), 1, fp);
+			fclose(fp);
+		}
+		STARTUPINFO si = {sizeof(si)};
+		PROCESS_INFORMATION pi;
+		memset(&pi, sizeof(pi), 0);
+		TCHAR cmdline[MAX_PATH * 2] = _T("c:\\windows\\system32\\notepad.exe ");
+		_tcscat(cmdline, szPath);
+		CreateProcess(NULL, cmdline, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
 	}
-	else
-	{
-		DWORD s = GetLastError();
-		MessageBox(NULL, _T("NO OK"), _T("DONE"),MB_OK);
-	}*/
 	return 0;
 }
 DWORD DoConnect()

@@ -13,6 +13,7 @@
 #define SWM_CONN	WM_APP + 5
 #define SWM_DISC	WM_APP + 6
 
+char *g_szCfgPath = NULL;
 // Global Variables:
 HINSTANCE		hInst;	// current instance
 NOTIFYICONDATA	niData;	// notify icon data
@@ -40,6 +41,18 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	WSAStartup(0x0202, &WSAData);
 	unsigned int uThreadID = 0;
 	onStatusChange = UpdateNotificationData;
+	char szPath[MAX_PATH];
+	if(SUCCEEDED(SHGetFolderPathA(NULL,
+								CSIDL_APPDATA|CSIDL_FLAG_CREATE,
+								NULL,
+								0,
+								szPath)))
+	{
+		PathAppendA(szPath, "xhcatv.ini");
+		g_szCfgPath = szPath;
+	}
+
+
 	// Perform application initialization:
 	if (!InitInstance (hInstance, nCmdShow)) return FALSE;
 	hAccelTable = LoadAccelerators(hInstance, (LPCTSTR)IDC_STEALTHDIALOG);

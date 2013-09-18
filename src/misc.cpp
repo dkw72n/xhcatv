@@ -1,12 +1,14 @@
 #include "stdafx.h"
 #include "misc.h"
+
 #define TENSPACE "          "
 char *p1="INFOMATIONENCODED", *p2="MACADDRESS";
 
 char* GetUsername()
 {
 	static char namebuff[11] = "test";
-	GetPrivateProfileStringA("INFO", "USER", namebuff, namebuff, 11, CONFIGFILE);
+	if(PathFileExistsA(g_szCfgPath))
+		GetPrivateProfileStringA("INFO", "USER", namebuff, namebuff, 11, g_szCfgPath);
 	namebuff[10]=0;
 	return namebuff;
 }
@@ -14,7 +16,8 @@ char* GetUsername()
 char * GetPassword()
 {
 	static char pswbuff[11] = "test";
-	GetPrivateProfileStringA("INFO", "PASSWORD", pswbuff, pswbuff, 11, CONFIGFILE);
+	if(PathFileExistsA(g_szCfgPath))
+		GetPrivateProfileStringA("INFO", "PASSWORD", pswbuff, pswbuff, 11, g_szCfgPath);
 	pswbuff[10]=0;
 	return pswbuff;
 }
@@ -26,7 +29,8 @@ UINT GetPlan()
 char* GetMacAddress()
 {
 	static char macbuff[] = "00-00-00-00-00-00";
-	GetPrivateProfileStringA("INFO", "MAC", macbuff, macbuff, sizeof(macbuff), CONFIGFILE);
+	if(PathFileExistsA(g_szCfgPath))
+		GetPrivateProfileStringA("INFO", "MAC", macbuff, macbuff, sizeof(macbuff), g_szCfgPath);
 	macbuff[strlen(macbuff)]=0;
 	return macbuff;
 }

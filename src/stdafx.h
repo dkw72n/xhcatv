@@ -13,7 +13,7 @@
 #include <commctrl.h>
 #include <Shellapi.h>
 #include <Shlwapi.h>
-
+#include <Shlobj.h>
 // C RunTime Header Files
 #include <stdlib.h>
 #include <stdio.h>
@@ -23,3 +23,5 @@
 #include <process.h>
 
 #include "commondef.h"
+
+#pragma comment(lib,"Shlwapi.lib")
