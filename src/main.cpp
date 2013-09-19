@@ -3,21 +3,29 @@
 #include "commondef.h"
 #include "ConnMgr.h"
 
-#define TEMPLATE	"[INFO]\r\n"\
+#define TEMPLATE	"[注意:plan处填写套餐类型,对应官方客户端下拉菜单顺序的1,2,3,4]\r\n"\
+					"[INFO]\r\n"\
 					"USER=yourname\r\n"\
 					"PASSWORD=yourpassword\r\n"\
 					"PLAN=1/2/3/4\r\n"\
 					"MAC=00-00-00-00-00-00\r\n"\
-					"[注意:plan处填写套餐类型,对应官方客户端下拉菜单顺序的1,2,3,4]"
+					"[setting]\r\n"\
+					"AutoConnect=0\r\n"
 
 bool g_ExitFlag = false;
 bool g_Action = STOP;
 bool g_Status = OFFLINE;
+extern char *g_szCfgPath;
 unsigned __stdcall mainLoop(void* pArguments)
 {
 	ConnMgr ConnectionMgr;
 	ConnectionMgr.Init();
 	unsigned uFrameCount = 0;
+	if(PathFileExistsA(g_szCfgPath)){
+		int autoConnect = GetPrivateProfileIntA("setting", "AutoConnect", 0, g_szCfgPath);
+		if(autoConnect)
+			DoConnect();
+	}
 	while(!g_ExitFlag)
 	{
 		if(g_Action == START && g_Status == ONLINE)

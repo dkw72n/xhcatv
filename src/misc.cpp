@@ -2,6 +2,8 @@
 #include "misc.h"
 
 #define TENSPACE "          "
+#define MAC_PREFIX "mymac-address:"
+#define INFO_PREFIX "myinformation:"
 char *p1="INFOMATIONENCODED", *p2="MACADDRESS";
 
 char* GetUsername()
@@ -28,9 +30,9 @@ UINT GetPlan()
 }
 char* GetMacAddress()
 {
-	static char macbuff[] = "00-00-00-00-00-00";
+	static char macbuff[] = MAC_PREFIX"00-00-00-00-00-00";
 	if(PathFileExistsA(g_szCfgPath))
-		GetPrivateProfileStringA("INFO", "MAC", macbuff, macbuff, sizeof(macbuff), g_szCfgPath);
+		GetPrivateProfileStringA("INFO", "MAC", "00-00-00-00-00-00", macbuff + strlen(MAC_PREFIX), sizeof("00-00-00-00-00-00"), g_szCfgPath);
 	macbuff[strlen(macbuff)]=0;
 	return macbuff;
 }
@@ -38,7 +40,7 @@ int Encoder(char *from, char *to, int lenTo)
 {
 	char mp[] = "0123456789ABCDEF";
 	int len = strlen(from), i, j;
-	BYTE key = (BYTE)((len & 0xff) ^ 0x05);
+	BYTE key = (BYTE)((len & 0xff) ^ 0xa5);
 	if(!to)
 		return -1;
 	for(i=0,j=0; i<len && j+1 < lenTo; i++)
@@ -53,9 +55,9 @@ char* GetInformationEncoded()
 {
 	char *user = GetUsername();
 	char *psw = GetPassword();
-	static char infobuff[] = "myinfomation:" TENSPACE TENSPACE TENSPACE TENSPACE "  ";
+	static char infobuff[] = INFO_PREFIX TENSPACE TENSPACE TENSPACE TENSPACE "  ";
 	char mp[] = "01234";
-	char *e_uid = infobuff + strlen("myinfomation:");
+	char *e_uid = infobuff + strlen(INFO_PREFIX);
 	char *e_psw = e_uid + 20;
 	char *plan = e_psw + 20;
 	Encoder(user, e_uid, 20);

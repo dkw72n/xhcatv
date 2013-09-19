@@ -79,7 +79,7 @@ int ProtocolHelper::CheckNATReply()
 {
 	int iRet = m_Channel.HasData();
 	if(iRet == NODATA)
-		return CHK_NODATA;
+		return CHK_SUCCESS;
 	else if(iRet == ERR)
 		return CHK_FAIL;
 	//assert iRet = GOTDATA
@@ -131,6 +131,6 @@ int ProtocolHelper::SendMACAddress()
 
 int ProtocolHelper::SendNATVersion()
 {
-	int iRet = m_Channel.Send("natversion:1",12);
+	int iRet = m_Channel.Send("natverson:1",11);
 	return iRet;
 }
