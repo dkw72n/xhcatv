@@ -12,5 +12,3 @@ extern void (*onStatusChange)(void);
 #define ONLINE true
 #define OFFLINE false
 #define SUCCESS_RET 0
-
-#define CONFIGFILE "d:\\xhcatv.ini"

@@ -5,10 +5,10 @@
 
 #define TEMPLATE	"[注意:plan处填写套餐类型,对应官方客户端下拉菜单顺序的1,2,3,4]\r\n"\
 					"[INFO]\r\n"\
-					"USER=yourname\r\n"\
-					"PASSWORD=yourpassword\r\n"\
-					"PLAN=1/2/3/4\r\n"\
-					"MAC=00-00-00-00-00-00\r\n"\
+					"用户名=yourname\r\n"\
+					"密码=yourpassword\r\n"\
+					"套餐=1/2/3/4\r\n"\
+					"物理地址=00-00-00-00-00-00\r\n"\
 					"[setting]\r\n"\
 					"AutoConnect=0\r\n"
 

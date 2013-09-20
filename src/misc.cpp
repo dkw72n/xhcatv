@@ -10,7 +10,7 @@ char* GetUsername()
 {
 	static char namebuff[11] = "test";
 	if(PathFileExistsA(g_szCfgPath))
-		GetPrivateProfileStringA("INFO", "USER", namebuff, namebuff, 11, g_szCfgPath);
+		GetPrivateProfileStringA("INFO", "用户名", namebuff, namebuff, 11, g_szCfgPath);
 	namebuff[10]=0;
 	return namebuff;
 }
@@ -19,20 +19,20 @@ char * GetPassword()
 {
 	static char pswbuff[11] = "test";
 	if(PathFileExistsA(g_szCfgPath))
-		GetPrivateProfileStringA("INFO", "PASSWORD", pswbuff, pswbuff, 11, g_szCfgPath);
+		GetPrivateProfileStringA("INFO", "密码", pswbuff, pswbuff, 11, g_szCfgPath);
 	pswbuff[10]=0;
 	return pswbuff;
 }
 
 UINT GetPlan()
 {
-	return GetPrivateProfileIntA("INFO", "PLAN", 0, CONFIGFILE);
+	return GetPrivateProfileIntA("INFO", "套餐", 0, g_szCfgPath);
 }
 char* GetMacAddress()
 {
 	static char macbuff[] = MAC_PREFIX"00-00-00-00-00-00";
 	if(PathFileExistsA(g_szCfgPath))
-		GetPrivateProfileStringA("INFO", "MAC", "00-00-00-00-00-00", macbuff + strlen(MAC_PREFIX), sizeof("00-00-00-00-00-00"), g_szCfgPath);
+		GetPrivateProfileStringA("INFO", "物理地址", "00-00-00-00-00-00", macbuff + strlen(MAC_PREFIX), sizeof("00-00-00-00-00-00"), g_szCfgPath);
 	macbuff[strlen(macbuff)]=0;
 	return macbuff;
 }
