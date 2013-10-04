@@ -65,3 +65,8 @@ char* GetInformationEncoded()
 	plan[0]=mp[GetPlan()%5];
 	return infobuff;
 }
+
+void ErrAlert(_TCHAR *szMsg)
+{
+	MessageBox(0, szMsg, _T("³ö´íÀ²"), MB_OK);
+}

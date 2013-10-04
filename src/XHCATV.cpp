@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "resource.h"
 #include "main.h"
+#include "ConnMgr.h"
 
 #define TRAYICONID	1//				ID number for the Notify Icon
 #define SWM_TRAYMSG	WM_APP//		the message ID sent to our window
@@ -14,6 +15,7 @@
 #define SWM_DISC	WM_APP + 6
 
 char *g_szCfgPath = NULL;
+bool g_SetRoute = false;
 // Global Variables:
 HINSTANCE		hInst;	// current instance
 NOTIFYICONDATA	niData;	// notify icon data
@@ -51,7 +53,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		PathAppendA(szPath, "xhcatv.ini");
 		g_szCfgPath = szPath;
 	}
-
+	g_SetRoute = false;
 
 	// Perform application initialization:
 	if (!InitInstance (hInstance, nCmdShow)) return FALSE;

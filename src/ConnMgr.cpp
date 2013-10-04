@@ -1,6 +1,14 @@
 #include "stdafx.h"
 #include "ConnMgr.h"
+#include "RouteSetter.h"
 #define MAXTRY 200
+
+void ConnMgr::AskForHelp(_TCHAR *szMsg)
+{
+	int RetCode = MessageBox(0, szMsg, _T("出错啦"), MB_RETRYCANCEL);
+	if (RetCode != IDRETRY)
+		DoDisconnect();
+}
 int ConnMgr::Beat(unsigned cnt)
 {
 	if(m_Lucky == -1)
@@ -64,9 +72,13 @@ int ConnMgr::Start()
 			timeout = -1;
 		}
 		else if(CHK_FAIL == iStatus || timeout > MAXTRY){
+			if(CHK_FAIL == iStatus)
+				AskForHelp(_T("你的MAC地址好像不对耶?"));
+			else if( timeout > MAXTRY)
+				AskForHelp(_T("连接超时了~"));
 			m_ProtocolHelper->CleanUp();
-			m_status = STA_CON;
 			timeout = -1;
+			m_status = STA_CON;
 		}
 		timeout++;
 		break;
@@ -110,6 +122,10 @@ int ConnMgr::Start()
 			timeout = -1;
 		}
 		else if(CHK_FAIL == iStatus || timeout > MAXTRY){
+			if(CHK_FAIL == iStatus)
+				AskForHelp(_T("看看你的用户名密码是不是写错了? 还有套餐选对没?"));
+			else if( timeout > MAXTRY)
+				AskForHelp(_T("连接超时了~"));
 			m_ProtocolHelper->CleanUp();
 			m_status = STA_CON;
 			timeout = -1;
@@ -131,6 +147,7 @@ int ConnMgr::Start()
 		if(CHK_SUCCESS == iStatus){
 			g_Status = ONLINE;
 			onStatusChange();
+			SetRouteTable();
 			timeout = -1;
 			m_status = STA_CON;
 		}

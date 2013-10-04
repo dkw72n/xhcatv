@@ -1,9 +1,10 @@
 #pragma once
 
-#define FPS 20
+#define FPS 5
 extern bool g_ExitFlag;
 extern bool g_Action;
 extern bool g_Status;
+extern bool g_SetRoute;
 extern char* g_Configfile;
 extern void (*onStatusChange)(void); 
 

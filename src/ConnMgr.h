@@ -24,5 +24,10 @@ public:
 private:
 	unsigned m_Lucky;
 	unsigned m_status;
+	void AskForHelp(_TCHAR *szMsg);
 	ProtocolHelper *m_ProtocolHelper;
 };
+
+
+DWORD DoConnect();
+DWORD DoDisconnect();
