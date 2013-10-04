@@ -15,7 +15,7 @@
 #define SWM_DISC	WM_APP + 6
 
 char *g_szCfgPath = NULL;
-bool g_SetRoute = false;
+bool g_SetRoute = true;
 // Global Variables:
 HINSTANCE		hInst;	// current instance
 NOTIFYICONDATA	niData;	// notify icon data
@@ -53,7 +53,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		PathAppendA(szPath, "xhcatv.ini");
 		g_szCfgPath = szPath;
 	}
-	g_SetRoute = false;
 
 	// Perform application initialization:
 	if (!InitInstance (hInstance, nCmdShow)) return FALSE;

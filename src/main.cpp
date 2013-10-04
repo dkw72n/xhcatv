@@ -4,6 +4,7 @@
 #include "ConnMgr.h"
 
 #define TEMPLATE	"[注意:plan处填写套餐类型,对应官方客户端下拉菜单顺序的1,2,3,4]\r\n"\
+					"[若希望VPN或者网游加速器正常工作, 请以管理员身份运行]\r\n"\
 					"[INFO]\r\n"\
 					"用户名=yourname\r\n"\
 					"密码=yourpassword\r\n"\

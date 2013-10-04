@@ -55,7 +55,7 @@ bool IsAlreadySet()
 
 void Setit()
 {
-	    // Declare and initialize variables
+    // Declare and initialize variables
 
     PMIB_IPFORWARDTABLE pIpForwardTable = NULL;
     PMIB_IPFORWARDROW pRow = NULL;
@@ -120,8 +120,10 @@ void Setit()
         printf("Gateway changed successfully\n");
     else if (dwStatus == ERROR_INVALID_PARAMETER)
         printf("Invalid parameter.\n");
-	else if (dwStatus == ERROR_ACCESS_DENIED)
-		ErrAlert(_T("设置路由表失败. 你可能没有权限执行此操作, 如果你不需要使用VPN或者网游加速器, 这并不影响使用; 如需使用,请退出并以\"管理员权限\"运行."));
+	else if (dwStatus == ERROR_ACCESS_DENIED){
+		printf("Acccess Deny.\n");
+		//ErrAlert(_T("设置路由表失败. 你可能没有权限执行此操作, 如果你不需要使用VPN或者网游加速器, 这并不影响使用; 如需使用,请退出并以\"管理员权限\"运行."));
+	}
 	else
         printf("Error: %d\n", dwStatus);
 
