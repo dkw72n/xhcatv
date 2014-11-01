@@ -5,6 +5,8 @@ An open source alternate for xhcatv client.
 
 新会有线视讯宽带网拨号器的开源实现.
 
+这是给windows用的, 需要在路由器/linux登录的请使用这个脚本: https://gist.github.com/f43c6b3f08d36f524c5a.git
+
 和官方客户端相比:
 
     *  开源
