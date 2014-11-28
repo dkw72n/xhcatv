@@ -24,7 +24,7 @@ int ProtocolHelper::CheckCHKReply()
 		return CHK_FAIL;
 	//assert iRet = GOTDATA
 	iRet = m_Channel.Recv(m_buf,1024);
-	if(iRet == OK && strncmp(CHKOK ,m_buf,strlen(CHKOK)) == 0)
+	if(iRet == OK)
 		return CHK_SUCCESS;
 	else
 		return CHK_FAIL;

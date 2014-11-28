@@ -1,0 +1,12 @@
+mkdir RELEASE
+mkdir ..\BIN
+cl /c /Zi /nologo /W3 /WX- /O1 /Oi /Os /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /D _CRT_SECURE_NO_WARNINGS /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope  /Fo"RELEASE\\"  /Gd /TP /analyze- .\STDAFX.CPP
+cl /c /Zi /nologo /W3 /WX- /O1 /Oi /Os /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /D _CRT_SECURE_NO_WARNINGS /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope  /Fo"RELEASE\\"  /Gd /TP /analyze- .\CONNMGR.CPP
+cl /c /Zi /nologo /W3 /WX- /O1 /Oi /Os /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /D _CRT_SECURE_NO_WARNINGS /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope  /Fo"RELEASE\\"  /Gd /TP /analyze- .\MAIN.CPP
+cl /c /Zi /nologo /W3 /WX- /O1 /Oi /Os /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /D _CRT_SECURE_NO_WARNINGS /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope  /Fo"RELEASE\\"  /Gd /TP /analyze- .\MISC.CPP
+cl /c /Zi /nologo /W3 /WX- /O1 /Oi /Os /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /D _CRT_SECURE_NO_WARNINGS /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope  /Fo"RELEASE\\"  /Gd /TP /analyze- .\ROUTESETTER.CPP
+cl /c /Zi /nologo /W3 /WX- /O1 /Oi /Os /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /D _CRT_SECURE_NO_WARNINGS /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope  /Fo"RELEASE\\"  /Gd /TP /analyze- .\TCPCLIENT.CPP
+cl /c /Zi /nologo /W3 /WX- /O1 /Oi /Os /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /D _CRT_SECURE_NO_WARNINGS /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope  /Fo"RELEASE\\"  /Gd /TP /analyze- .\XHCATV.CPP
+cl /c /Zi /nologo /W3 /WX- /O1 /Oi /Os /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /D _CRT_SECURE_NO_WARNINGS /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope  /Fo"RELEASE\\"  /Gd /TP /analyze- .\PROCOLHELPER.CPP
+rc /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"RELEASE\XHCATV.RES" XHCATV.RC
+link /OUT:"..\BIN\XHCATV.EXE" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /RELEASE /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X86 /SAFESEH RELEASE\XHCATV.RES RELEASE\CONNMGR.OBJ RELEASE\MAIN.OBJ RELEASE\MISC.OBJ RELEASE\PROCOLHELPER.OBJ RELEASE\ROUTESETTER.OBJ  RELEASE\STDAFX.OBJ  RELEASE\TCPCLIENT.OBJ  RELEASE\XHCATV.OBJ 
